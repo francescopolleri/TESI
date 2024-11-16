@@ -23,7 +23,7 @@ int THRESHOLD(vector<int> test){
 
     if (all_entries_less_than_8) {
         cout << "All entries are less than 8" << endl;
-        thr=test.size()+min_thr;
+        thr=0;
         //cout<<thr<<endl;
         return thr;
     }
@@ -111,6 +111,31 @@ cout<<THRESHOLD(test4)<<endl;
 //Nel programma vero dovrò creare un vettore per ogni canale all'interno del loop
 
 
+
+
+
+void EvaluateThr::SaveBestThr(){
+
+ std::ofstream outfile(m_nomefile_thr.c_str()); //.c_str());
+
+  int th;
+  for(int j=1; j<256+1; j++){
+     th=0;
+     vector<int> channel_values;
+     for(int i=1; i<m_nbinx+1; i++){
+        channel_values.push_back(m_isto_summary->GetBinContent(i,j))
+      }
+     th=THRESHOLD(channel_values);
+
+     if(th==0) {
+          std::cout<<"Il pixel "<<j-1<<" non ha mai acquisito dati "<<std::endl;
+        th=30;
+      }
+     outfile<<th<<std::endl;
+   }
+
+   outfile.close();
+}
 
 
 
