@@ -111,9 +111,6 @@ cout<<THRESHOLD(test4)<<endl;
 //Nel programma vero dovrò creare un vettore per ogni canale all'interno del loop
 
 
-
-
-
 void EvaluateThr::SaveBestThr(){
 
  std::ofstream outfile(m_nomefile_thr.c_str()); //.c_str());
